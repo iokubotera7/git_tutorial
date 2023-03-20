@@ -3,3 +3,4 @@ test
 hello!
 git commit --amen
 iiiii
+confrict
