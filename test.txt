@@ -1,4 +1,5 @@
 hello
 test
 hello!
-git commit --amend
+git commit --amen
+iiiii
