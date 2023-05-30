@@ -448,3 +448,43 @@ AWSリソースのモデル化、およびセットアップ
 EC2インスタンスとEBSの料金分  
 
 
+## TO_TIMESTAMP
+入力式を対応するタイムスタンプに変換する  
+TO_TIMESTAMP_LTZ:現地時間帯のタイムスタンプ
+timezoneセッションパラメータの値に応じて、タイムゾーンが動的に変化するTIMESTAMP。  
+例えば、timezoneパラメータをAmerica/Los_Angelesにした場合、  
+
+```
+create or replace table ts_test(ts timestamp_ltz;
+
+alter session set timezone = 'America/Los_Angeles';
+
+insert into ts_test values('2014-01-01 16:00:00');
+insert into ts_test values('2014-01-01 16:00:00 +00:00:00' );
+
+```
+上記のクエリを実行した場合、463行目のタイムゾーンを指定した場合については、タイムゾーン分の時間が変更されるが、タイムゾーンを指定していないと、何も変更されない  
+
+
+
+TO_TIMESTAMP_NTZ：タイムゾーンなしのタイムスタンプ  
+レコード登録時のタイムゾーンもtimezoneセッションパラメータも、どちらも影響を受けないTIMESTAMP  
+例えば、timezoneパラメータをAmerica/Los_Angelesにした場合、  
+
+```
+
+create or replace table ts_test(ts timestamp_ntz);
+
+alter session set timezone = 'America/Los_Angeles';
+
+insert into ts_test values('2014-01-01 16:00:00');
+insert into ts_test values('2014-01-01 16:00:00 +00:00:00' );
+
+```
+
+上記を実行した場合、レコード登録時にタイムゾーンを指定していたとしても、していなかったとしても時刻が変化しないのがTIMEZONE_NTZの特徴  
+
+TO_TIMESTAMP_TZ：タイムゾーン付きのタイムスタンプ  
+
+
+
