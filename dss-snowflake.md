@@ -1,0 +1,1 @@
+DataikuとSnowflakeを連携させる際、Snowflakeのアカウント作成で使用したメールアドレスとDataiku Cloudで設定するメールアドレスは一緒でなければならない。  
